@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suma de dos números</title>
+  <title>Suma Automática</title>
 </head>
 <body>
-  <h1>Sumar dos números</h1>
+  <h1>Sumar dos números automáticamente</h1>
 
   <label for="numero1">Número 1:</label>
   <input type="number" id="numero1" placeholder="Ingresa el primer número"><br><br>
@@ -14,28 +14,23 @@
   <label for="numero2">Número 2:</label>
   <input type="number" id="numero2" placeholder="Ingresa el segundo número"><br><br>
 
-  <button onclick="sumar()">Sumar</button>
-
   <h2>Resultado: <span id="resultado">0</span></h2>
 
   <script>
-    function sumar() {
-      // Obtener los valores de los inputs
-      const num1 = parseFloat(document.getElementById('numero1').value);
-      const num2 = parseFloat(document.getElementById('numero2').value);
+    const numero1 = document.getElementById('numero1');
+    const numero2 = document.getElementById('numero2');
+    const resultado = document.getElementById('resultado');
 
-      // Verificar si los valores son números
-      if (isNaN(num1) || isNaN(num2)) {
-        alert("Por favor ingresa ambos números.");
-        return;
-      }
-
-      // Calcular la suma
-      const suma = num1 + num2;
-
-      // Mostrar el resultado
-      document.getElementById('resultado').textContent = suma;
+    function actualizarSuma() {
+      const num1 = parseFloat(numero1.value) || 0;
+      const num2 = parseFloat(numero2.value) || 0;
+      resultado.textContent = num1 + num2;
     }
+
+    // Actualiza automáticamente al cambiar cualquier número
+    numero1.addEventListener('input', actualizarSuma);
+    numero2.addEventListener('input', actualizarSuma);
   </script>
 </body>
 </html>
+
