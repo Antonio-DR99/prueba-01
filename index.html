@@ -9,28 +9,37 @@
   <h1>Sumar dos números automáticamente</h1>
 
   <label for="numero1">Número 1:</label>
-  <input type="number" id="numero1" placeholder="Ingresa el primer número"><br><br>
+  <input type="number" id="numero1" min="0" aria-label="Primer número" placeholder="Ingresa el primer número"><br><br>
 
   <label for="numero2">Número 2:</label>
-  <input type="number" id="numero2" placeholder="Ingresa el segundo número"><br><br>
+  <input type="number" id="numero2" min="0" aria-label="Segundo número" placeholder="Ingresa el segundo número"><br><br>
 
   <h2>Resultado: <span id="resultado">0</span></h2>
+  <p id="aviso" style="color:red; font-weight:bold;"></p>
 
   <script>
     const numero1 = document.getElementById('numero1');
     const numero2 = document.getElementById('numero2');
     const resultado = document.getElementById('resultado');
+    const aviso = document.getElementById('aviso');
 
     function actualizarSuma() {
       const num1 = parseFloat(numero1.value) || 0;
       const num2 = parseFloat(numero2.value) || 0;
-      resultado.textContent = num1 + num2;
+      const suma = num1 + num2;
+
+      resultado.textContent = suma;
+
+      // Aviso si el resultado es demasiado grande
+      if (suma > 1000) {
+        aviso.textContent = "⚠️ El resultado es muy alto.";
+      } else {
+        aviso.textContent = "";
+      }
     }
 
-    // Actualiza automáticamente al cambiar cualquier número
     numero1.addEventListener('input', actualizarSuma);
     numero2.addEventListener('input', actualizarSuma);
   </script>
 </body>
 </html>
-
